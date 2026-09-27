@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from app.routers import pipe_section as router_pipe_section
 from app.routers import inspect as router_inspect
+from app.routers import patrol_route as router_patrol_route
 from app.routers import defect as router_defect
 from app.routers import cctv as router_cctv
 from app.routers import valve as router_valve
@@ -25,4 +26,4 @@ from app.routers import road_occupy as router_road_occupy
 from app.routers import backfill as router_backfill
 from app.routers import corrosion as router_corrosion
 
-ROUTERS = [router_pipe_section, router_inspect, router_defect, router_cctv, router_valve, router_maintenance, router_emergency, router_excavation, router_well, router_drainage, router_gas_detect, router_leak, router_meter_record, router_hydrant, router_trench, router_road_occupy, router_backfill, router_corrosion]
+ROUTERS = [router_pipe_section, router_inspect, router_patrol_route, router_defect, router_cctv, router_valve, router_maintenance, router_emergency, router_excavation, router_well, router_drainage, router_gas_detect, router_leak, router_meter_record, router_hydrant, router_trench, router_road_occupy, router_backfill, router_corrosion]

@@ -99,10 +99,14 @@ async function runAction(action: string, row: Row) {
   try {
     const response = await request(`${ENDPOINT}/${row.id}/actions`, {
       method: 'POST',
-      body: JSON.stringify({ action }),
+      body: JSON.stringify({ values: { action } }),
     })
     if (!response.ok) {
       throw new Error('巡查记录动作未生效，请稍后重试')
+    }
+    const payload = await response.json()
+    if (payload.ok === false) {
+      throw new Error(payload.message || '巡查记录动作未生效')
     }
     await reload()
   } catch (error) {

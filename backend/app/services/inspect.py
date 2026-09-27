@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 from app.store import store
+from app.services.patrol_route import sync_ledger_from_inspect
 
 MODULE = "inspect"
 REQUIRED_FIELDS = ["巡查编号", "巡查路段", "巡查人员"]
@@ -58,4 +59,6 @@ class InspectService:
         entry["status"] = target
         entry["pending"] = target != STATUS_ORDER[-1]
         entry["abnormal"] = action in NEGATIVE_ACTIONS
+        # 巡查记录侧流转后回写关联路线台账，保证台账、轨迹、巡查记录明细状态一致
+        sync_ledger_from_inspect(entry)
         return entry, f"巡查记录单已{action}"
