@@ -7,6 +7,7 @@
       </div>
       <div class="page-actions">
         <button class="btn primary" type="button" @click="openCreate">登记巡查记录单</button>
+        <button class="btn" type="button" @click="goRoutes">巡查路线台账</button>
         <button class="btn" type="button" @click="exportRows">导出巡查记录清单</button>
       </div>
     </header>
@@ -38,6 +39,7 @@
         <tr v-for="row in rows" :key="String(row.id)">
           <td v-for="column in columns" :key="column">{{ row[column] ?? '—' }}</td>
           <td class="row-actions">
+            <RouterLink class="link" :to="`/inspect_route?task=${String(row.id)}`">路线台账</RouterLink>
             <button
               v-for="action in actions"
               :key="action"
@@ -64,8 +66,11 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { request } from '@/api/client'
+
+const router = useRouter()
 
 type Row = Record<string, string | number | null>
 
@@ -92,6 +97,10 @@ function exportRows() {
 
 function openCreate() {
   errorMessage.value = '巡查记录单登记入口尚未接入审批流'
+}
+
+function goRoutes() {
+  void router.push({ name: 'inspect_route' })
 }
 
 async function runAction(action: string, row: Row) {

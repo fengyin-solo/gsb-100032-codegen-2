@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '@/views/Dashboard.vue'
 const PipeSection = () => import('@/views/pipe_section/index.vue')
 const Inspect = () => import('@/views/inspect/index.vue')
+const InspectRoute = () => import('@/views/inspect_route/index.vue')
 const Defect = () => import('@/views/defect/index.vue')
 const Cctv = () => import('@/views/cctv/index.vue')
 const Valve = () => import('@/views/valve/index.vue')
@@ -26,6 +27,7 @@ const router = createRouter({
     { path: '/', name: 'dashboard', component: Dashboard },
     { path: '/pipe_section', name: 'pipe_section', component: PipeSection },
     { path: '/inspect', name: 'inspect', component: Inspect },
+    { path: '/inspect_route', name: 'inspect_route', component: InspectRoute },
     { path: '/defect', name: 'defect', component: Defect },
     { path: '/cctv', name: 'cctv', component: Cctv },
     { path: '/valve', name: 'valve', component: Valve },
